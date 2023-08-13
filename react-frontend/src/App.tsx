@@ -65,7 +65,7 @@ const App: FC<any> = () => {
         }
         { MembershipToShowOnModal &&
           (
-            <Modal toggle={() => closeDetailsModal()} isOpen={!!MembershipToShowOnModal} backdrop={true}>
+            <Modal toggle={() => closeDetailsModal()} isOpen={true} backdrop={true}>
               <ModalHeader toggle={e => closeDetailsModal()}>User Details</ModalHeader>
               <ModalBody>
                 <div>
