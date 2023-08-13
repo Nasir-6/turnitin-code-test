@@ -8,7 +8,7 @@ import turnitinLogo from './turnitin-logo.png';
 const App: FC<any> = () => {
   const [memberships, setMemberships] = useState<Array<Membership>>([]);
   const [search, setSearch] = useState<string>();
-  const [activeMembership, setActiveMembership] = useState<Membership>();
+  const [activeMembership, setActiveMembership] = useState<Membership | null>(null);
 
   const loadMemberships = () => {
     return fetchMembers()
@@ -24,7 +24,7 @@ const App: FC<any> = () => {
   }
 
   const closeDetailsModal = () => {
-    setActiveMembership(undefined);
+    setActiveMembership(null);
   }
 
   return (
