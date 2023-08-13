@@ -33,6 +33,8 @@ public class MembershipServiceTest {
 
 	private MembershipList members;
 
+	private UserList users;
+
 	private User userOne;
 
 	private User userTwo;
@@ -58,7 +60,7 @@ public class MembershipServiceTest {
 				.setId("2")
 				.setName("test two")
 				.setEmail("test2@example.com");
-		UserList users = new UserList().setUsers(List.of(userOne, userTwo));
+		users = new UserList().setUsers(List.of(userOne, userTwo));
 
 		when(membershipBackendClient.fetchMemberships()).thenReturn(CompletableFuture.completedFuture(members));
 		when(membershipBackendClient.fetchUsers()).thenReturn(CompletableFuture.completedFuture(users));
@@ -70,5 +72,15 @@ public class MembershipServiceTest {
 		MembershipList members = membershipService.fetchAllMembershipsWithUsers().get();
 		assertThat(members.getMemberships().get(0).getUser()).isEqualTo(userOne);
 		assertThat(members.getMemberships().get(1).getUser()).isEqualTo(userTwo);
+	}
+
+	@Test
+	public void FetchAllMembershipsSuccessfullyReturnsEmptyListIfFetchesAreEmpty() throws Exception {
+		members = new MembershipList().setMemberships(List.of());
+		users = new UserList().setUsers(List.of());
+		when(membershipBackendClient.fetchMemberships()).thenReturn(CompletableFuture.completedFuture(members));
+		when(membershipBackendClient.fetchUsers()).thenReturn(CompletableFuture.completedFuture(users));
+		MembershipList members = membershipService.fetchAllMembershipsWithUsers().get();
+		assertThat(members.getMemberships()).isEmpty();
 	}
 }
