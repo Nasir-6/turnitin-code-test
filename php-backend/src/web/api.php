@@ -12,7 +12,7 @@ $dbconn = pg_connect("host=db dbname=postgres user=postgres password=postgres");
 $resource = $pathInfo[1];
 switch ($resource) {
     case 'members':
-        $result = pg_query_params($dbconn, 'SELECT * FROM memberships', []);
+        $result = pg_query_params($dbconn, 'SELECT id, user_id, role FROM memberships', []);
         $memberships = [];
         while($membership = pg_fetch_assoc($result)) {
             $memberships[] = $membership;
@@ -24,11 +24,11 @@ switch ($resource) {
     case 'users':
         if (isset($pathInfo[2])) {
             $userId = $pathInfo[2];
-            $result = pg_query_params($dbconn, 'SELECT * FROM users WHERE id = $1', [$userId]);
+            $result = pg_query_params($dbconn, 'SELECT id, name, email FROM users WHERE id = $1', [$userId]);
             $user = pg_fetch_assoc($result);
             echo json_encode($user);
         } else {
-            $result = pg_query_params($dbconn, 'SELECT * FROM users', []);
+            $result = pg_query_params($dbconn, 'SELECT id, name, email FROM users', []);
             $users = [];
             while($user = pg_fetch_assoc($result)) {
                 $users[] = $user;
