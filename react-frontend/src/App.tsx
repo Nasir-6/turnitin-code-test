@@ -8,7 +8,7 @@ import turnitinLogo from './turnitin-logo.png';
 const App: FC<any> = () => {
   const [memberships, setMemberships] = useState<Array<Membership>>([]);
   const [search, setSearch] = useState<string>();
-  const [activeMembership, setActiveMembership] = useState<Membership | null>(null);
+  const [MembershipToShowOnModal, setMembershipToShowOnModal] = useState<Membership | null>(null);
 
   const loadMemberships = () => {
     return fetchMembers()
@@ -20,11 +20,11 @@ const App: FC<any> = () => {
   }
 
   const loadDetailsModal = (membership: Membership) => {
-    setActiveMembership(membership);
+    setMembershipToShowOnModal(membership);
   }
 
   const closeDetailsModal = () => {
-    setActiveMembership(null);
+    setMembershipToShowOnModal(null);
   }
 
   return (
@@ -63,17 +63,17 @@ const App: FC<any> = () => {
             </table>
           )
         }
-        { activeMembership &&
+        { MembershipToShowOnModal &&
           (
-            <Modal toggle={() => closeDetailsModal()} isOpen={!!activeMembership} backdrop={true}>
+            <Modal toggle={() => closeDetailsModal()} isOpen={!!MembershipToShowOnModal} backdrop={true}>
               <ModalHeader toggle={e => closeDetailsModal()}>User Details</ModalHeader>
               <ModalBody>
                 <div>
-                  <p>Name: {activeMembership.user?.name}</p>
-                  <p>Email: {activeMembership.user?.email}</p>
-                  <p>Membership ID: {activeMembership.id}</p>
-                  <p>User ID: {activeMembership.user?.id}</p>
-                  <p>Role: {activeMembership.role}</p>
+                  <p>Name: {MembershipToShowOnModal.user?.name}</p>
+                  <p>Email: {MembershipToShowOnModal.user?.email}</p>
+                  <p>Membership ID: {MembershipToShowOnModal.id}</p>
+                  <p>User ID: {MembershipToShowOnModal.user?.id}</p>
+                  <p>Role: {MembershipToShowOnModal.role}</p>
                 </div>
               </ModalBody>
             </Modal>
