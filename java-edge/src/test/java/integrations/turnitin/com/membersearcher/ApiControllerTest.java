@@ -65,6 +65,7 @@ public class ApiControllerTest {
 		mvc.perform(asyncDispatch(result))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.memberships").isNotEmpty())
-				.andExpect(jsonPath("$.memberships[0].user.name").value("test one"));
+				.andExpect(jsonPath("$.memberships[0].user.name").value("test one"))
+				.andExpect(jsonPath("$.memberships[1].user.name").value("test two"));
 	}
 }
