@@ -10,11 +10,10 @@ type Props = {
 const MembershipModal = ({ membershipToShowOnModal, closeDetailsModal }: Props) => {
   return (
     <Modal toggle={closeDetailsModal} isOpen={true} backdrop={true}>
-      <ModalHeader toggle={closeDetailsModal}>User Details</ModalHeader>
+      <ModalHeader toggle={closeDetailsModal}>{membershipToShowOnModal.user?.name}</ModalHeader>
       <ModalBody>
         <div>
-          <p>Name: {membershipToShowOnModal.user?.name}</p>
-          <p>Email: {membershipToShowOnModal.user?.email}</p>
+          <p>{membershipToShowOnModal.user?.email}</p>
           <p>Membership ID: {membershipToShowOnModal.id}</p>
           <p>User ID: {membershipToShowOnModal.user?.id}</p>
           <p>Role: {membershipToShowOnModal.role}</p>
