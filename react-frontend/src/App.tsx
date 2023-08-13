@@ -65,8 +65,8 @@ const App: FC<any> = () => {
         }
         { MembershipToShowOnModal &&
           (
-            <Modal toggle={() => closeDetailsModal()} isOpen={true} backdrop={true}>
-              <ModalHeader toggle={e => closeDetailsModal()}>User Details</ModalHeader>
+            <Modal toggle={closeDetailsModal} isOpen={true} backdrop={true}>
+              <ModalHeader toggle={closeDetailsModal}>User Details</ModalHeader>
               <ModalBody>
                 <div>
                   <p>Name: {MembershipToShowOnModal.user?.name}</p>
