@@ -33,7 +33,7 @@ const App: FC<any> = () => {
         <img src={turnitinLogo} alt='logo' />
         <div className='user-inputs'>
           <Button color='primary' className='fetch-btn' onClick={loadMemberships}>Fetch Memberships</Button>
-          <Input type='text' placeholder='Search' onChange={updateSearch} />
+          <Input type='text' placeholder='Filter by name/email' onChange={updateSearch} />
         </div>
         {
           memberships?.length > 0 && (
