@@ -2,13 +2,14 @@ import React, { ChangeEvent, FC, useState } from 'react';
 import './App.css';
 import { Membership } from './Type';
 import { fetchMembers } from './Api';
-import { Button, Input, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 import turnitinLogo from './turnitin-logo.png';
+import MembershipModal from './MembershipModal';
 
 const App: FC<any> = () => {
   const [memberships, setMemberships] = useState<Array<Membership>>([]);
   const [search, setSearch] = useState<string>();
-  const [MembershipToShowOnModal, setMembershipToShowOnModal] = useState<Membership | null>(null);
+  const [membershipToShowOnModal, setMembershipToShowOnModal] = useState<Membership | null>(null);
 
   const loadMemberships = () => {
     return fetchMembers()
@@ -63,21 +64,8 @@ const App: FC<any> = () => {
             </table>
           )
         }
-        { MembershipToShowOnModal &&
-          (
-            <Modal toggle={closeDetailsModal} isOpen={true} backdrop={true}>
-              <ModalHeader toggle={closeDetailsModal}>User Details</ModalHeader>
-              <ModalBody>
-                <div>
-                  <p>Name: {MembershipToShowOnModal.user?.name}</p>
-                  <p>Email: {MembershipToShowOnModal.user?.email}</p>
-                  <p>Membership ID: {MembershipToShowOnModal.id}</p>
-                  <p>User ID: {MembershipToShowOnModal.user?.id}</p>
-                  <p>Role: {MembershipToShowOnModal.role}</p>
-                </div>
-              </ModalBody>
-            </Modal>
-          )
+        { membershipToShowOnModal &&
+            <MembershipModal membershipToShowOnModal={membershipToShowOnModal} closeDetailsModal={closeDetailsModal}/>
         }
       </header>
     </div>
