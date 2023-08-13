@@ -36,7 +36,7 @@ const App: FC<any> = () => {
           <Input type='text' placeholder='Search' onChange={updateSearch} />
         </div>
         {
-          memberships && memberships.length > 0 && (
+          memberships?.length > 0 && (
             <table>
               <thead>
                 <tr>
