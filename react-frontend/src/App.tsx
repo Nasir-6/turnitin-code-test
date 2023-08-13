@@ -24,10 +24,6 @@ const App: FC<any> = () => {
     setMembershipToShowOnModal(membership);
   }
 
-  const closeDetailsModal = () => {
-    setMembershipToShowOnModal(null);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -65,7 +61,7 @@ const App: FC<any> = () => {
           )
         }
         { membershipToShowOnModal &&
-            <MembershipModal membershipToShowOnModal={membershipToShowOnModal} closeDetailsModal={closeDetailsModal}/>
+            <MembershipModal membershipToShowOnModal={membershipToShowOnModal} setMembershipToShowOnModal={setMembershipToShowOnModal}/>
         }
       </header>
     </div>

@@ -4,10 +4,14 @@ import { Membership } from "./Type";
 
 type Props = {
   membershipToShowOnModal: Membership;
-  closeDetailsModal: () => void;
+  setMembershipToShowOnModal: React.Dispatch<React.SetStateAction<Membership | null>>;
 };
 
-const MembershipModal = ({ membershipToShowOnModal, closeDetailsModal }: Props) => {
+const MembershipModal = ({ membershipToShowOnModal, setMembershipToShowOnModal }: Props) => {
+  const closeDetailsModal = () => {
+    setMembershipToShowOnModal(null);
+  };
+
   return (
     <Modal toggle={closeDetailsModal} isOpen={true} backdrop={true}>
       <ModalHeader toggle={closeDetailsModal}>{membershipToShowOnModal.user?.name}</ModalHeader>
