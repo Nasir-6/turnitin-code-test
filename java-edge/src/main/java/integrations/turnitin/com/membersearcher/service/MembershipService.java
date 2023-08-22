@@ -26,6 +26,7 @@ public class MembershipService {
 	 * @return A CompletableFuture containing a fully populated MembershipList object.
 	 */
 	public CompletableFuture<MembershipList> fetchAllMembershipsWithUsers() {
+		// TODO: Feedback from Martin - Could fetch users and memberships asynchronously and match when both are complete
 		return membershipBackendClient.fetchUsers()
 				.thenCompose(users -> {
 					Map<String, User> userMap = users.getUsers().stream()
